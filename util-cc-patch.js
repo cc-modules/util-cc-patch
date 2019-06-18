@@ -58,11 +58,7 @@ if (typeof window.cc !== 'undefined') {
           const root = this.getChildren()[0];
           return cc.$(`${root.name}${selector}`);
         } else {
-          if (this.parent instanceof cc.Node) {
-            return this.parent.$(`${this.name}${selector}`);
-          } else {
-            return this.getComponent(compName);
-          }
+          return this.getComponent(compName);
         }
       }
     };
@@ -126,11 +122,10 @@ if (typeof window.cc !== 'undefined') {
      */
     cc.$all = function (selector) {
       const eles = Array.isArray(selector) ? selector : cc.$(String(selector));
-      const cachedFuncs = {};
       const proxy = new Proxy(eles, {
         get (target, name) {
-          if (cachedFuncs[name] || typeof target[0][name] === 'function') {
-            return cachedFuncs[name] = function () {
+          if (typeof target[0][name] === 'function') {
+            return function () {
               return target.map(n => n[name].apply(n, arguments));
             };
           } else {
@@ -168,7 +163,6 @@ if (typeof window.cc !== 'undefined') {
       //identity
       'name',
       'active',
-      'uuid',
       //position, dimesion
       'x', 'y', 'width', 'height', 'zIndex',
       //prepresentation
