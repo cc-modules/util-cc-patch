@@ -210,6 +210,21 @@ if (typeof window.cc !== 'undefined') {
 
     cc.Node.prototype.$saveState.SerializeProps = SerializeProps;
 
+    /**
+     * Return component on the node if exists.
+     * Otherwise create a new component
+     * then add created component to the node.
+     * Finally return the component;
+     *
+     * @method ensureComponent
+     * @param {string|function} typeOrClassName
+     */
+    cc.Node.prototype.$ensureComponent = function (typeOrClassName) {
+      const comp = this.getComponent(typeOrClassName);
+      if (comp) return comp;
+      return this.addComponent(typeOrClassName);
+    };
+
     // simplified lodash/get
     function get(o, path, v){
       if (typeof o === 'undefined') return v;
