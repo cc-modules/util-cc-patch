@@ -3,16 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "util-cc-patch.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@code.vipkid.com.cn:3590/edu/cc-game/infra/util-cc-patch.git"
-  },
-  "keywords": [
-    "cocos"
-  ],
   "author": "wangweihua <wangweihua@vipkid.com.cn>",
   "license": "ISC"
 }
